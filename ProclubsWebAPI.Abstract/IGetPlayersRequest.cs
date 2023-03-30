@@ -31,6 +31,21 @@ namespace ProclubsWebAPI.Abstract
         public string Platform { get; }
 
         /// <summary>
+        /// The URL of the get players by name web request
+        /// </summary>
+        public string ByNameURL { get; }
+
+        /// <summary>
+        /// The URL of the get players by club web request
+        /// </summary>
+        public string ByClubURL { get; }
+
+        /// <summary>
+        /// Object that will process the web call
+        /// </summary>
+        public IWebRequest WebRequest { get; }
+
+        /// <summary>
         /// Call to get players by their name.
         /// </summary>
         /// <returns>JSON string containing the player information.</returns>
