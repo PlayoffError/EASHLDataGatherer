@@ -24,6 +24,16 @@ namespace ProclubsWebAPI.Abstract
         public string MatchType { get; }
 
         /// <summary>
+        /// The URL of the get games web request
+        /// </summary>
+        public string URL { get; }
+
+        /// <summary>
+        /// Object that will process the web call
+        /// </summary>
+        public IWebRequest WebRequest { get; }
+
+        /// <summary>
         /// Call to get the information for the games that match the search criteria.
         /// </summary>
         /// <returns>JSON string containing the game information.</returns>
