@@ -13,6 +13,17 @@ namespace ProclubsWebAPI.Abstract
         public long ClubID { get; }
 
         /// <summary>
+        /// The console platform to search on.
+        /// 
+        /// Valid values are:
+        /// ps5 
+        /// ps4 
+        /// xbox-series-xs 
+        /// xboxone
+        /// </summary>
+        public string Platform { get; }
+
+        /// <summary>
         /// Match type of games
         /// 
         /// Valid values are:
