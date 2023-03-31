@@ -19,8 +19,14 @@ namespace ProclubsWebAPI
         /// <param name="byNameURL"></param>
         /// <param name="byClubURL"></param>
         /// <param name="webRequest"></param>
-        public GetPlayersRequest(long clubID, string name, string platform, IWebRequest webRequest)
+        /// <param name="platformValidator"></param>
+        public GetPlayersRequest(long clubID, string name, string platform, IWebRequest webRequest, IPlatformValidator platformValidator)
         {
+            if (platformValidator.Validate(platform) == false)
+            {
+                throw new ArgumentOutOfRangeException("platform", platform, $"Provided value is not a valid platform.");
+            }
+
             ClubID = clubID;
             Name = name;
             Platform = platform;
