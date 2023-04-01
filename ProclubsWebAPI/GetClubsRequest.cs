@@ -20,6 +20,16 @@ namespace ProclubsWebAPI
         /// <param name="platformValidator"></param>
         public GetClubsRequest(string platform, string searchName, IWebRequest webRequest, IPlatformValidator platformValidator)
         {
+            if (webRequest == null)
+            {
+                throw new ArgumentNullException(nameof(webRequest));
+            }
+
+            if ( platformValidator == null )
+            {
+                throw new ArgumentNullException(nameof(platformValidator));
+            }
+
             if ( platformValidator.Validate(platform) == false)
             {
                 throw new ArgumentOutOfRangeException("platform", platform, $"Provided value is not a valid platform.");

@@ -35,7 +35,7 @@ namespace ProclubsWebAPI
                     }
                     catch (Exception ex)
                     {
-                        throw new ProclubsWebRequestException(URL, ex.Message, ex);
+                        throw new ProclubsWebRequestException(URL, ex);
                     }                    
                 }
             }
