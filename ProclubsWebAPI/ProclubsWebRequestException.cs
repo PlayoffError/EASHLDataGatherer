@@ -6,8 +6,8 @@ namespace ProclubsWebAPI
 {
     public class ProclubsWebRequestException : Exception
     {
-        public ProclubsWebRequestException(string url, string message, Exception innerException) 
-            : base(message, innerException)
+        public ProclubsWebRequestException(string url, Exception innerException) 
+            : base(innerException.Message, innerException)
         {
             URL = url;
         }
