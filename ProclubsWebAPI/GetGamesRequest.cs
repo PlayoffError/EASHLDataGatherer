@@ -19,11 +19,16 @@ namespace ProclubsWebAPI
         /// <param name="platform"></param>
         /// <param name="webRequest"></param>
         /// <param name="platformValidator"></param>
-        public GetGamesRequest(long clubID, string matchType, string platform, IWebRequest webRequest, IPlatformValidator platformValidator)
+        public GetGamesRequest(long clubID, string matchType, string platform, IWebRequest webRequest, IPlatformValidator platformValidator, IMatchTypeValidator matchTypeValidator)
         {
             if (platformValidator.Validate(platform) == false)
             {
                 throw new ArgumentOutOfRangeException("platform", platform, $"Provided value is not a valid platform.");
+            }
+
+            if ( matchTypeValidator.Validate(matchType) == false)
+            {
+                throw new ArgumentOutOfRangeException("matchType", matchType, $"Provided value is not a valid matchType.");
             }
 
             ClubID = clubID;
