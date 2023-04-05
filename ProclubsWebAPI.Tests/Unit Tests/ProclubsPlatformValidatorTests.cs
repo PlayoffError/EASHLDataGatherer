@@ -9,10 +9,10 @@ namespace ProclubsWebAPI.Tests
         [InlineData("PS4")]
         [InlineData("XBOX-SERIES-XS")]
         [InlineData("XBOXONE")]
-        void Validate_ValidPlatforms_Exact(string platform)
+        void Validate_ValidPlatforms_UpperCase_Fails(string platform)
         {
             ProclubsPlatformValidator validator = new ProclubsPlatformValidator();
-            validator.Validate(platform).Should().BeTrue();
+            validator.Validate(platform).Should().BeFalse();
         }
 
         [Theory]
@@ -20,7 +20,7 @@ namespace ProclubsWebAPI.Tests
         [InlineData("ps4")]
         [InlineData("xbox-series-xs")]
         [InlineData("xboxone")]
-        void Validate_ValidPlatforms_LowerCase(string platform)
+        void Validate_ValidPlatforms_Exact(string platform)
         {
             ProclubsPlatformValidator validator = new ProclubsPlatformValidator();
             validator.Validate(platform).Should().BeTrue();
@@ -31,10 +31,10 @@ namespace ProclubsWebAPI.Tests
         [InlineData("Ps4")]
         [InlineData("XbOx-SERies-xS")]
         [InlineData("xbOxONe")]
-        void Validate_ValidPlatforms_MixedCase(string platform)
+        void Validate_ValidPlatforms_MixedCase_Fails(string platform)
         {
             ProclubsPlatformValidator validator = new ProclubsPlatformValidator();
-            validator.Validate(platform).Should().BeTrue();
+            validator.Validate(platform).Should().BeFalse();
         }
 
         [Fact]
@@ -46,11 +46,11 @@ namespace ProclubsWebAPI.Tests
 
         [Theory]
         [InlineData("")]
-        [InlineData("PS6")]
+        [InlineData("ps6")]
         [InlineData("XBOX360")]
-        [InlineData("PS5 ")]
+        [InlineData("ps5 ")]
         [InlineData(" PS5")]
-        [InlineData("P S 5")]
+        [InlineData("p s 5")]
         void Validate_InvalidPlatform_Fails(string platform)
         {
             ProclubsPlatformValidator validator = new ProclubsPlatformValidator();
