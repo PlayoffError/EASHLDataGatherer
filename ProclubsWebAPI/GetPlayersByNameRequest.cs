@@ -6,21 +6,18 @@ using System.Threading.Tasks;
 
 namespace ProclubsWebAPI
 {
-    public class GetPlayersRequest : IGetPlayersRequest
+    public class GetPlayersByNameRequest : IGetPlayersByNameRequest
     {
-        private GetPlayersRequest() { }
+        private GetPlayersByNameRequest() { }
 
         /// <summary>
         /// Constructs a GetPlayersRequest instance
         /// </summary>
-        /// <param name="clubID"></param>
         /// <param name="name"></param>
         /// <param name="platform"></param>
-        /// <param name="byNameURL"></param>
-        /// <param name="byClubURL"></param>
         /// <param name="webRequest"></param>
         /// <param name="platformValidator"></param>
-        public GetPlayersRequest(long clubID, string name, string platform, IWebRequest webRequest, IPlatformValidator platformValidator)
+        public GetPlayersByNameRequest(string name, string platform, IWebRequest webRequest, IPlatformValidator platformValidator)
         {
             if (webRequest == null)
             {
@@ -37,14 +34,10 @@ namespace ProclubsWebAPI
                 throw new ArgumentOutOfRangeException("platform", platform, $"Provided value is not a valid platform.");
             }
 
-            ClubID = clubID;
             Name = name;
             Platform = platform;
             WebRequest = webRequest;
         }
-
-        /// <inheritdoc/>
-        public long ClubID { get; }
 
         /// <inheritdoc/>
         public string Name { get; }
@@ -53,7 +46,7 @@ namespace ProclubsWebAPI
         public string Platform { get; }
 
         /// <inheritdoc/>
-        public string ByNameURL 
+        public string URL 
         { 
             get
             {
@@ -61,29 +54,14 @@ namespace ProclubsWebAPI
                 return $"https://proclubs.ea.com/api/nhl/members/search?platform={Platform}&memberName={nameFormatted}";
             }
         }
+       
+        /// <inheritdoc/>
+        public IWebRequest WebRequest { get; }        
 
         /// <inheritdoc/>
-        public string ByClubURL 
-        { 
-            get
-            {
-                return $"https://proclubs.ea.com/api/nhl/members/stats?clubId={ClubID}&platform={Platform}";
-            }
-        }
-
-        /// <inheritdoc/>
-        public IWebRequest WebRequest { get; }
-
-        /// <inheritdoc/>
-        public async Task<string> GetPlayersByClub()
+        public async Task<string> GetPlayers()
         {
-            return await WebRequest.Process(ByClubURL);
-        }
-
-        /// <inheritdoc/>
-        public async Task<string> GetPlayersByName()
-        {
-            return await WebRequest.Process(ByNameURL);
+            return await WebRequest.Process(URL);
         }
     }
 }

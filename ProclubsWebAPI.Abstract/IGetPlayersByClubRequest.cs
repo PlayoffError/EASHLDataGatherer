@@ -5,19 +5,13 @@ using System.Threading.Tasks;
 
 namespace ProclubsWebAPI.Abstract
 {
-    public interface IGetPlayersRequest
+    public interface IGetPlayersByClubRequest
     {
         /// <summary>
         /// ID of the club desired players belong to.  Required if
         /// getting players by club.
         /// </summary>
         public long ClubID { get; }
-
-        /// <summary>
-        /// Name of the player to search for.  Required if getting players
-        /// by name.
-        /// </summary>
-        public string Name { get; }
 
         /// <summary>
         /// The console platform to search on.
@@ -28,33 +22,22 @@ namespace ProclubsWebAPI.Abstract
         /// xbox-series-xs 
         /// xboxone
         /// </summary>
-        public string Platform { get; }
-
-        /// <summary>
-        /// The URL of the get players by name web request
-        /// </summary>
-        public string ByNameURL { get; }
+        public string Platform { get; }        
 
         /// <summary>
         /// The URL of the get players by club web request
         /// </summary>
-        public string ByClubURL { get; }
+        public string URL { get; }
 
         /// <summary>
         /// Object that will process the web call
         /// </summary>
-        public IWebRequest WebRequest { get; }
-
-        /// <summary>
-        /// Call to get players by their name.
-        /// </summary>
-        /// <returns>JSON string containing the player information.</returns>
-        public Task<string> GetPlayersByName();
+        public IWebRequest WebRequest { get; }        
 
         /// <summary>
         /// Call to get players by their club.
         /// </summary>
         /// <returns>JSON string containing the player information.</returns>
-        public Task<string> GetPlayersByClub();
+        public Task<string> GetPlayers();
     }
 }
