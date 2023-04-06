@@ -22,6 +22,16 @@ namespace ProclubsWebAPI
         /// <param name="platformValidator"></param>
         public GetPlayersRequest(long clubID, string name, string platform, IWebRequest webRequest, IPlatformValidator platformValidator)
         {
+            if (webRequest == null)
+            {
+                throw new ArgumentNullException(nameof(webRequest));
+            }
+
+            if (platformValidator == null)
+            {
+                throw new ArgumentNullException(nameof(platformValidator));
+            }
+
             if (platformValidator.Validate(platform) == false)
             {
                 throw new ArgumentOutOfRangeException("platform", platform, $"Provided value is not a valid platform.");
@@ -47,7 +57,8 @@ namespace ProclubsWebAPI
         { 
             get
             {
-                return $"https://proclubs.ea.com/api/nhl/members/search?platform={Platform}&memberName={Name}";
+                string nameFormatted = Name.Replace(" ", "+");
+                return $"https://proclubs.ea.com/api/nhl/members/search?platform={Platform}&memberName={nameFormatted}";
             }
         }
 
