@@ -29,4 +29,8 @@
     <ProjectReference Include="..\ProclubsWebAPI\ProclubsWebAPI.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Integration Tests\" />
+  </ItemGroup>
+
 </Project>
