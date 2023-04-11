@@ -63,6 +63,7 @@ namespace ProclubsWebAPI
         { 
             get
             {
+                       //https://proclubs.ea.com/api/nhl/clubs/matches?clubIds={clubID}&platform=ps5&matchType={matchType}
                 return $"https://proclubs.ea.com/api/nhl/clubs/matches?clubIds={ClubID}&platform={Platform}&matchType={MatchType}";
             }
         }
