@@ -10,9 +10,7 @@ using System.Threading.Tasks;
 namespace ProclubsWebAPI.Tests.Integration_Tests
 {
     public class GetGamesIntegrationTests
-    {
-        //"gameType5", "gameType10", "club_private"
-
+    {        
         [Theory]
         [InlineData("ps5", "gameType5")]
         [InlineData("ps4", "gameType5")]
@@ -179,7 +177,6 @@ namespace ProclubsWebAPI.Tests.Integration_Tests
         [InlineData("common-gen5", 999999, "club_private")]
         void URL_GetGames_ClubDoesNotExist(string platform, long clubID, string matchType)
         {
-            string testURL = "test URL";
             var innerException = new Exception("test message");
 
             var webRequest = new ProclubsWebRequest();
