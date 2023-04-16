@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 
 namespace ProclubsWebAPI
 {
+    // NOTE:  There seems to be an issues with searching for x-box series x players under the "common-gen5" 
+    // platform.  No results are returned.  Searching for playstation players under this category works correctly.
     public class GetPlayersByNameRequest : IGetPlayersByNameRequest
     {
         private GetPlayersByNameRequest() { }
