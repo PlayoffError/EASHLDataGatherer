@@ -152,8 +152,8 @@ namespace ProclubsWebAPI.Tests.Integration_Tests
             var matchTypeValidator = new ProclubsMatchTypeValidator();
 
             GetGamesRequest request = new GetGamesRequest(clubID, matchType, platform, webRequest, platformValidator, matchTypeValidator);
-
-            request.GetGames().Result.Should().StartWith("[{\"matchId\":\"");
+            string result = request.GetGames().Result;
+            result.Should().StartWith("[{\"matchId\":\"");
         }
 
         [Theory]
