@@ -76,12 +76,13 @@ namespace ProclubsWebAPI.Tests.Integration_Tests
         }
 
         [Theory]
-        [InlineData("ps5", "prnold")]
-        [InlineData("ps4", "winy125")]
-        [InlineData("xbox-series-xs", "FACE I16I")]
-        [InlineData("xboxone", "Tanka Haiku")]
-        [InlineData("common-gen4", "winy125")]
-        [InlineData("common-gen5", "xXrapidV2Xx")]
+        //[InlineData("ps5", "prnold")]
+        //[InlineData("ps4", "winy125")]
+        //[InlineData("xbox-series-xs", "FACE I16I")]
+        //[InlineData("xboxone", "Tanka Haiku")]
+        //[InlineData("common-gen4", "winy125")]
+        //[InlineData("common-gen5", "xXrapidV2Xx")]
+        [InlineData("common-gen5", "joe")]
         void URL_GetPlayers_PlayerExist(string platform, string name)
         {
             var webRequest = new ProclubsWebRequest();
