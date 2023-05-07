@@ -9,18 +9,21 @@ namespace ProclubsObjectsTests.IntegrationTests
     public class PlayersByNameIntegrationTests
     {
         [Fact]
-        public void PlayerExists()
+        public void PlayersByNameIntegrationTests_PlayerExists()
         {
-            var webRequest = new ProclubsWebRequest();
-            var platformValidator = new ProclubsPlatformValidator();
-
-            GetPlayersByNameRequest request = new GetPlayersByNameRequest("joe", "common-gen5", webRequest, platformValidator);
-
-            string result = request.GetPlayers().Result;
-
-            PlayerByNameReturn? byNameReturn = JsonConvert.DeserializeObject<PlayerByNameReturn>(result);
+            PlayersByNameRequest request = new PlayersByNameRequest("joe", "common-gen5");
+            PlayerByNameReturn? byNameReturn = request.GetPlayers();
             byNameReturn.Should().NotBeNull();
+            byNameReturn.Members.Should().NotBeEmpty();
+        }
 
+        [Fact]
+        public void PlayersByNameIntegrationTests_PlayerDoesNotExists()
+        {
+            PlayersByNameRequest request = new PlayersByNameRequest("00000", "common-gen5");
+            PlayerByNameReturn? byNameReturn = request.GetPlayers();
+            byNameReturn.Should().NotBeNull();
+            byNameReturn.Members.Should().BeEmpty();
         }
     }
 }

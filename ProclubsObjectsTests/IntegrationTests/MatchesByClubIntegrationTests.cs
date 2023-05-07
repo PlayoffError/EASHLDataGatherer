@@ -15,17 +15,20 @@ namespace ProclubsObjectsTests.IntegrationTests
     {
 
         [Fact]
-        void GetMatches()
+        void GetMatches_ClubExists()
         {
-            var webRequest = new ProclubsWebRequest();
-            var platformValidator = new ProclubsPlatformValidator();
-            var matchTypeValidator = new ProclubsMatchTypeValidator();
-
-            GetGamesRequest request = new GetGamesRequest(1463, "gameType5", "common-gen5", webRequest, platformValidator, matchTypeValidator);
-            string result = request.GetGames().Result;
-
-            List<Match>? matches = JsonConvert.DeserializeObject<List<Match>>(result);
+            RecentMatchesByClubIDRequest matchRequest = new RecentMatchesByClubIDRequest(1463, "gameType5", "common-gen5");
+            List<Match>? matches = matchRequest.GetMatches();            
             matches.Should().NotBeNull();
+            matches.Count().Should().Be(5);
+        }
+
+        [Fact]
+        void GetMatches_ClubDoesNotExist()
+        {
+            RecentMatchesByClubIDRequest matchRequest = new RecentMatchesByClubIDRequest(999999, "gameType5", "common-gen5");
+            List<Match>? matches = matchRequest.GetMatches();
+            matches.Should().BeEmpty();
         }
     }
 }

@@ -13,18 +13,29 @@ namespace ProclubsObjectsTests.IntegrationTests
     public class PlayerByClubIntegrationTests
     {
         [Fact]
-        public void PlayerExists()
+        public void PlayerByClubIntegrationTests_ClubExists()
         {
-            var webRequest = new ProclubsWebRequest();
-            var platformValidator = new ProclubsPlatformValidator();
-
-            GetPlayersByClubRequest request = new GetPlayersByClubRequest(1463, "common-gen5", webRequest, platformValidator);
-
-            string result = request.GetPlayers().Result;
-
-            PlayerByClubReturn? byClubReturn = JsonConvert.DeserializeObject<PlayerByClubReturn>(result);
+            PlayersByClubIDRequest playerRequest = new PlayersByClubIDRequest(1463, "common-gen5");
+            PlayerByClubReturn? byClubReturn = playerRequest.GetPlayers();
             byClubReturn.Should().NotBeNull();
+            byClubReturn.Members.Should().NotBeEmpty();
+            byClubReturn.PositionCount.Should().NotBeNull();
+            byClubReturn.PositionCount.DefenseMen.Should().NotBeNull();
+            byClubReturn.PositionCount.Forwards.Should().NotBeNull();
+            byClubReturn.PositionCount.Goalie.Should().NotBeNull();
+        }
 
+        [Fact]
+        public void PlayerByClubIntegrationTests_ClubDoesNotExists()
+        {
+            PlayersByClubIDRequest playerRequest = new PlayersByClubIDRequest(99999, "common-gen5");
+            PlayerByClubReturn? byClubReturn = playerRequest.GetPlayers();
+            byClubReturn.Should().NotBeNull();
+            byClubReturn.Members.Should().BeEmpty();
+            byClubReturn.PositionCount.Should().NotBeNull();
+            byClubReturn.PositionCount.DefenseMen.Should().BeNull();
+            byClubReturn.PositionCount.Forwards.Should().BeNull();
+            byClubReturn.PositionCount.Goalie.Should().BeNull();
         }
     }
 }

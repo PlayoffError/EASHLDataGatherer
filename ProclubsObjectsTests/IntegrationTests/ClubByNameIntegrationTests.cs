@@ -13,16 +13,29 @@ namespace ProclubsObjectsTests.IntegrationTests
     public class ClubByNameIntegrationTests
     {
         [Fact]
-        void GetClubByName()
+        void GetClubByName_ClubExists()
         {
-            var webRequest = new ProclubsWebRequest();
-            var validator = new ProclubsPlatformValidator();
-
-            GetClubsRequest request = new GetClubsRequest("common-gen5", "old time hockey", webRequest, validator);
-            string result = request.GetClubs().Result;
-
-            var clubReturn = JsonConvert.DeserializeObject<Dictionary<string, Club>>(result);
+            ClubObjectsByNameRequest request = new ClubObjectsByNameRequest("prospect", "common-gen5");
+            Dictionary<string, Club>? clubReturn = request.GetClubs();
+            
             clubReturn.Should().NotBeNull();
+            clubReturn.Should().NotBeEmpty();
+
+            Club firstClub = clubReturn!.Values.First();
+            firstClub.Should().NotBeNull();
+
+            firstClub.Name.ToUpper().Should().StartWith("PROSPECT");
+            firstClub.Platform.Should().Be("common-gen5");
+            firstClub.ClubInfo.Should().NotBeNull();
+        }
+
+        [Fact]
+        void GetClubByName_ClubDoesNotExist()
+        {
+            ClubObjectsByNameRequest request = new ClubObjectsByNameRequest("00000", "common-gen5");
+            Dictionary<string, Club>? clubReturn = request.GetClubs();
+
+            clubReturn.Should().BeEmpty();
         }
     }
 }
