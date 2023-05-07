@@ -5,6 +5,6 @@ namespace ProclubsObjects
     public class PlayerByNameReturn
     {
         [JsonProperty("members")]
-        public List<MemberByName> members { get; set; } = new List<MemberByName>();
+        public List<MemberByName> Members { get; set; } = new List<MemberByName>();
     }
 }
