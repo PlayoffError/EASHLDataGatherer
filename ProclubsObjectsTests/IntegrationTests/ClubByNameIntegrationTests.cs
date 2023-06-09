@@ -32,7 +32,7 @@ namespace ProclubsObjectsTests.IntegrationTests
         [Fact]
         void GetClubByName_ClubDoesNotExist()
         {
-            ClubObjectsByNameRequest request = new ClubObjectsByNameRequest("00000", "common-gen5");
+            ClubObjectsByNameRequest request = new ClubObjectsByNameRequest("000000", "common-gen5");
             Dictionary<string, Club>? clubReturn = request.GetClubs();
 
             clubReturn.Should().BeEmpty();
