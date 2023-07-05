@@ -18,16 +18,16 @@ namespace ProclubsObjectsTests.IntegrationTests
         void GetMatches_ClubExists()
         {
             RecentMatchesByClubIDRequest matchRequest = new RecentMatchesByClubIDRequest(1463, "gameType5", "common-gen5");
-            List<Match>? matches = matchRequest.GetMatches();            
+            List<Match>? matches = matchRequest.GetMatches().Result;            
             matches.Should().NotBeNull();
-            matches.Count().Should().Be(5);
+            matches!.Count().Should().Be(5);
         }
 
         [Fact]
         void GetMatches_ClubDoesNotExist()
         {
             RecentMatchesByClubIDRequest matchRequest = new RecentMatchesByClubIDRequest(999999, "gameType5", "common-gen5");
-            List<Match>? matches = matchRequest.GetMatches();
+            List<Match>? matches = matchRequest.GetMatches().Result;
             matches.Should().BeEmpty();
         }
     }

@@ -21,14 +21,14 @@ namespace ProclubsObjects
         public string MatchType { get; }
         public string Platform { get; }
 
-        public List<Match>? GetMatches()
+        public async Task<List<Match>?> GetMatches()
         {
             var webRequest = new ProclubsWebRequest();
             var platformValidator = new ProclubsPlatformValidator();
             var matchTypeValidator = new ProclubsMatchTypeValidator();
 
             GetGamesRequest request = new GetGamesRequest(ClubID, MatchType, Platform, webRequest, platformValidator, matchTypeValidator);
-            string result = request.GetGames().Result;
+            string result = await request.GetGames();
 
             return JsonConvert.DeserializeObject<List<Match>>(result);
         }

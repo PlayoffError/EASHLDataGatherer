@@ -12,18 +12,18 @@ namespace ProclubsObjectsTests.IntegrationTests
         public void PlayersByNameIntegrationTests_PlayerExists()
         {
             PlayersByNameRequest request = new PlayersByNameRequest("joe", "common-gen5");
-            PlayerByNameReturn? byNameReturn = request.GetPlayers();
+            PlayerByNameReturn? byNameReturn = request.GetPlayers().Result;
             byNameReturn.Should().NotBeNull();
-            byNameReturn.Members.Should().NotBeEmpty();
+            byNameReturn!.Members.Should().NotBeEmpty();
         }
 
         [Fact]
         public void PlayersByNameIntegrationTests_PlayerDoesNotExists()
         {
             PlayersByNameRequest request = new PlayersByNameRequest("00000", "common-gen5");
-            PlayerByNameReturn? byNameReturn = request.GetPlayers();
-            byNameReturn.Should().NotBeNull();
-            byNameReturn.Members.Should().BeEmpty();
+            PlayerByNameReturn? byNameReturn = request.GetPlayers().Result;
+            byNameReturn!.Should().NotBeNull();
+            byNameReturn!.Members.Should().BeEmpty();
         }
     }
 }
