@@ -16,7 +16,7 @@ namespace ProclubsObjectsTests.IntegrationTests
         void GetClubByName_ClubExists()
         {
             ClubObjectsByNameRequest request = new ClubObjectsByNameRequest("prospect", "common-gen5");
-            Dictionary<string, Club>? clubReturn = request.GetClubs();
+            Dictionary<string, Club>? clubReturn = request.GetClubs().Result;
             
             clubReturn.Should().NotBeNull();
             clubReturn.Should().NotBeEmpty();
@@ -33,7 +33,7 @@ namespace ProclubsObjectsTests.IntegrationTests
         void GetClubByName_ClubDoesNotExist()
         {
             ClubObjectsByNameRequest request = new ClubObjectsByNameRequest("000000", "common-gen5");
-            Dictionary<string, Club>? clubReturn = request.GetClubs();
+            Dictionary<string, Club>? clubReturn = request.GetClubs().Result;
 
             clubReturn.Should().BeEmpty();
         }

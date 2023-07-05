@@ -20,13 +20,13 @@ namespace ProclubsObjects
         public string ClubName { get; }
         public string Platform { get; }
 
-        public Dictionary<string, Club>? GetClubs()
+        public async Task<Dictionary<string, Club>?> GetClubs()
         {
             var webRequest = new ProclubsWebRequest();
             var validator = new ProclubsPlatformValidator();
 
             GetClubsRequest request = new GetClubsRequest(Platform, ClubName, webRequest, validator);
-            string result = request.GetClubs().Result;
+            string result = await request.GetClubs();
 
             return JsonConvert.DeserializeObject<Dictionary<string, Club>>(result);
         }
