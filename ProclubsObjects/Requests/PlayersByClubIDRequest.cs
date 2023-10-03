@@ -28,6 +28,11 @@ namespace ProclubsObjects
 
             string result = await request.GetPlayers();
 
+            string failureStart = "Fail to request /clubs/getMembers, Response: ";
+            if (result.StartsWith(failureStart))
+            {
+                result = result.Substring(failureStart.Length);
+            }
             return JsonConvert.DeserializeObject<PlayerByClubReturn>(result);
         }
     }
