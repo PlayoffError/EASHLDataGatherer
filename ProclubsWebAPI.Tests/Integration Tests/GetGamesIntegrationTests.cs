@@ -12,22 +12,10 @@ namespace ProclubsWebAPI.Tests.Integration_Tests
     public class GetGamesIntegrationTests
     {        
         [Theory]
-        [InlineData("ps5", "gameType5")]
-        [InlineData("ps4", "gameType5")]
-        [InlineData("xbox-series-xs", "gameType5")]
-        [InlineData("xboxone", "gameType5")]
         [InlineData("common-gen4", "gameType5")]
         [InlineData("common-gen5", "gameType5")]
-        [InlineData("ps5", "gameType10")]
-        [InlineData("ps4", "gameType10")]
-        [InlineData("xbox-series-xs", "gameType10")]
-        [InlineData("xboxone", "gameType10")]
         [InlineData("common-gen4", "gameType10")]
         [InlineData("common-gen5", "gameType10")]
-        [InlineData("ps5", "club_private")]
-        [InlineData("ps4", "club_private")]
-        [InlineData("xbox-series-xs", "club_private")]
-        [InlineData("xboxone", "club_private")]
         [InlineData("common-gen4", "club_private")]
         [InlineData("common-gen5", "club_private")]
         void Constructor_Success( string platform, string matchType )
@@ -92,29 +80,17 @@ namespace ProclubsWebAPI.Tests.Integration_Tests
             var matchTypeValidator = new ProclubsMatchTypeValidator();
             var platformValidator = new ProclubsPlatformValidator();
 
-            Action testConstruct = () => new GetGamesRequest(1234, "matchType1", "ps5", webRequest, platformValidator, matchTypeValidator);
+            Action testConstruct = () => new GetGamesRequest(1234, "matchType1", "common-gen5", webRequest, platformValidator, matchTypeValidator);
             testConstruct.Should().Throw<ArgumentOutOfRangeException>().WithParameterName("matchType");
         }
 
         [Theory]
-        [InlineData("ps5", 1463, "gameType5")]
-        [InlineData("ps4", 2532, "gameType5")]
-        [InlineData("xbox-series-xs", 35, "gameType5")]
-        [InlineData("xboxone", 2305, "gameType5")]
-        [InlineData("common-gen4", 2532, "gameType5")]
-        [InlineData("common-gen5", 1463, "gameType5")]
-        [InlineData("ps5", 1463, "gameType10")]
-        [InlineData("ps4", 2532, "gameType10")]
-        [InlineData("xbox-series-xs", 35, "gameType10")]
-        [InlineData("xboxone", 2305, "gameType10")]
-        [InlineData("common-gen4", 2532, "gameType10")]
-        [InlineData("common-gen5", 1463, "gameType10")]
-        [InlineData("ps5", 1463, "club_private")]
-        [InlineData("ps4", 2532, "club_private")]
-        [InlineData("xbox-series-xs", 35, "club_private")]
-        [InlineData("xboxone", 2305, "club_private")]
-        [InlineData("common-gen4", 2532, "club_private")]
-        [InlineData("common-gen5", 1463, "club_private")]
+        [InlineData("common-gen4", 186, "gameType5")]
+        [InlineData("common-gen5", 40, "gameType5")]
+        [InlineData("common-gen4", 186, "gameType10")]
+        [InlineData("common-gen5", 40, "gameType10")]
+        [InlineData("common-gen4", 186, "club_private")]
+        [InlineData("common-gen5", 40, "club_private")]
         void URL_SubstituteValues(string platform, long clubID, string matchType)
         {
             var webRequest = new ProclubsWebRequest();
@@ -127,24 +103,12 @@ namespace ProclubsWebAPI.Tests.Integration_Tests
         }
 
         [Theory]
-        [InlineData("ps5", 1463, "gameType5")]
-        [InlineData("ps4", 2532, "gameType5")]
-        [InlineData("xbox-series-xs", 35, "gameType5")]
-        [InlineData("xboxone", 2305, "gameType5")]
-        [InlineData("common-gen4", 2532, "gameType5")]
-        [InlineData("common-gen5", 1463, "gameType5")]
-        [InlineData("ps5", 1463, "gameType10")]
-        [InlineData("ps4", 2532, "gameType10")]
-        [InlineData("xbox-series-xs", 35, "gameType10")]
-        [InlineData("xboxone", 2305, "gameType10")]
-        [InlineData("common-gen4", 2532, "gameType10")]
-        [InlineData("common-gen5", 1463, "gameType10")]
-        [InlineData("ps5", 1463, "club_private")]
-        [InlineData("ps4", 2532, "club_private")]
-        [InlineData("xbox-series-xs", 35, "club_private")]
-        [InlineData("xboxone", 9997, "club_private")]
-        [InlineData("common-gen4", 2532, "club_private")]
-        [InlineData("common-gen5", 1463, "club_private")]
+        [InlineData("common-gen4", 186, "gameType5")]
+        [InlineData("common-gen5", 40, "gameType5")]
+        [InlineData("common-gen4", 186, "gameType10")]
+        [InlineData("common-gen5", 40, "gameType10")]
+        [InlineData("common-gen4", 186, "club_private")]
+        [InlineData("common-gen5", 40, "club_private")]
         void URL_GetGames_ClubExists(string platform, long clubID, string matchType)
         {
             var webRequest = new ProclubsWebRequest();
@@ -157,22 +121,10 @@ namespace ProclubsWebAPI.Tests.Integration_Tests
         }
 
         [Theory]
-        [InlineData("ps5", 999999, "gameType5")]
-        [InlineData("ps4", 999999, "gameType5")]
-        [InlineData("xbox-series-xs", 999999, "gameType5")]
-        [InlineData("xboxone", 999999, "gameType5")]
         [InlineData("common-gen4", 999999, "gameType5")]
         [InlineData("common-gen5", 999999, "gameType5")]
-        [InlineData("ps5", 999999, "gameType10")]
-        [InlineData("ps4", 999999, "gameType10")]
-        [InlineData("xbox-series-xs", 999999, "gameType10")]
-        [InlineData("xboxone", 999999, "gameType10")]
         [InlineData("common-gen4", 999999, "gameType10")]
         [InlineData("common-gen5", 999999, "gameType10")]
-        [InlineData("ps5", 999999, "club_private")]
-        [InlineData("ps4", 999999, "club_private")]
-        [InlineData("xbox-series-xs", 999999, "club_private")]
-        [InlineData("xboxone", 999999, "club_private")]
         [InlineData("common-gen4", 999999, "club_private")]
         [InlineData("common-gen5", 999999, "club_private")]
         void URL_GetGames_ClubDoesNotExist(string platform, long clubID, string matchType)

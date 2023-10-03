@@ -12,10 +12,6 @@ namespace ProclubsWebAPI.Tests.Integration_Tests
     public class GetPlayersByClubIntegrationTests
     {
         [Theory]
-        [InlineData("ps5")]
-        [InlineData("ps4")]
-        [InlineData("xbox-series-xs")]
-        [InlineData("xboxone")]
         [InlineData("common-gen4")]
         [InlineData("common-gen5")]
         void Constructor_Success(string platform)
@@ -59,10 +55,6 @@ namespace ProclubsWebAPI.Tests.Integration_Tests
         }
 
         [Theory]
-        [InlineData("ps5", 1463)]
-        [InlineData("ps4", 2532)]
-        [InlineData("xbox-series-xs", 35)]
-        [InlineData("xboxone", 2305)]
         [InlineData("common-gen4", 2532)]
         [InlineData("common-gen5", 1463)]        
         void URL_SubstituteValues(string platform, long clubID)
@@ -76,12 +68,8 @@ namespace ProclubsWebAPI.Tests.Integration_Tests
         }
 
         [Theory]
-        [InlineData("ps5", 1463)]
-        [InlineData("ps4", 2532)]
-        [InlineData("xbox-series-xs", 35)]
-        [InlineData("xboxone", 2305)]
-        [InlineData("common-gen4", 2532)]
-        [InlineData("common-gen5", 1463)]        
+        [InlineData("common-gen4", 186)]
+        [InlineData("common-gen5", 746)]        
         void URL_GetPlayers_ClubExists(string platform, long clubID)
         {
             var webRequest = new ProclubsWebRequest();
@@ -93,10 +81,6 @@ namespace ProclubsWebAPI.Tests.Integration_Tests
         }
 
         [Theory]
-        [InlineData("ps5", 999999)]
-        [InlineData("ps4", 999999)]
-        [InlineData("xbox-series-xs", 999999)]
-        [InlineData("xboxone", 999999)]
         [InlineData("common-gen4", 999999)]
         [InlineData("common-gen5", 999999)]        
         void URL_GetPlayers_ClubDoesNotExist(string platform, long clubID )
@@ -108,7 +92,7 @@ namespace ProclubsWebAPI.Tests.Integration_Tests
 
             GetPlayersByClubRequest request = new GetPlayersByClubRequest(clubID, platform, webRequest, platformValidator);
             string result = request.GetPlayers().Result;
-            result.Should().Be("{\"error\":{\"component\":11,\"errorcode\":66125835,\"errorname\":\"CLUBS_ERR_INVALID_CLUB_ID\"}}");
+            result.Should().Be("Fail to request /clubs/getMembers, Response: {\n\"error\" : {\n    \"component\": 11,\n    \"errorcode\": 66125835,\n    \"errorname\": \"CLUBS_ERR_INVALID_CLUB_ID\"\n    }\n}\n");
         }
     }
 }

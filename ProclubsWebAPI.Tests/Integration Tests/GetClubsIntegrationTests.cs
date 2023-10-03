@@ -12,10 +12,6 @@ namespace ProclubsWebAPI.Tests.Integration_Tests
     public class GetClubsIntegrationTests
     {
         [Theory]
-        [InlineData("ps5")]
-        [InlineData("ps4")]
-        [InlineData("xbox-series-xs")]
-        [InlineData("xboxone")]
         [InlineData("common-gen4")]
         [InlineData("common-gen5")]
         void Constructor_Success( string platformName )
@@ -58,14 +54,6 @@ namespace ProclubsWebAPI.Tests.Integration_Tests
         }
 
         [Theory]
-        [InlineData("ps5", "Club Name", "Club+Name")]
-        [InlineData("ps5", "ClubName", "ClubName")]
-        [InlineData("ps4", "Club Name", "Club+Name")]
-        [InlineData("ps4", "ClubName", "ClubName")]
-        [InlineData("xbox-series-xs", "Club Name", "Club+Name")]
-        [InlineData("xbox-series-xs", "ClubName", "ClubName")]
-        [InlineData("xboxone", "Club Name", "Club+Name")]
-        [InlineData("xboxone", "ClubName", "ClubName")]
         [InlineData("common-gen4", "Club Name", "Club+Name")]
         [InlineData("common-gen4", "ClubName", "ClubName")]
         [InlineData("common-gen5", "Club Name", "Club+Name")]
@@ -81,11 +69,7 @@ namespace ProclubsWebAPI.Tests.Integration_Tests
         }
 
         [Theory]
-        [InlineData("ps4", "Plzensky Prazdroj")]
-        [InlineData("ps5", "EHC Blackwings Linz")]
-        [InlineData("xbox-series-xs", "Nothing 2 Prove")]
-        [InlineData("xboxone", "MICKEY N FRIENDS")]
-        [InlineData("common-gen4", "MICKEY N FRIENDS")]
+        [InlineData("common-gen4", "Black Army")]
         [InlineData("common-gen5", "EHC Blackwings Linz")]
         void URL_GetClubs_ClubExists(string platformName, string clubName)
         {
@@ -99,10 +83,6 @@ namespace ProclubsWebAPI.Tests.Integration_Tests
         }
 
         [Theory]
-        [InlineData("ps4", "00000000")]
-        [InlineData("ps5", "00000000")]
-        [InlineData("xbox-series-xs", "00000000")]
-        [InlineData("xboxone", "00000000")]
         [InlineData("common-gen4", "00000000")]
         [InlineData("common-gen5", "00000000")]
         void URL_GetClubs_ClubDoesNotExist(string platformName, string clubName)

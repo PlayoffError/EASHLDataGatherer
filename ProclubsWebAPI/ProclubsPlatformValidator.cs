@@ -7,7 +7,7 @@ namespace ProclubsWebAPI
 {
     public class ProclubsPlatformValidator : IPlatformValidator
     {
-        private static readonly Lazy<List<string>> _validPlatforms = new Lazy<List<string>>(() => new List<string>() { "ps5", "ps4", "xbox-series-xs", "xboxone", "common-gen4", "common-gen5" });
+        private static readonly Lazy<List<string>> _validPlatforms = new Lazy<List<string>>(() => new List<string>() { "common-gen4", "common-gen5" });
 
         /// <inheritdoc/>
         public bool Validate(string platform)

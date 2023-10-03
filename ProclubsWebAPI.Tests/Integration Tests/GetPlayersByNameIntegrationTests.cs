@@ -12,10 +12,6 @@ namespace ProclubsWebAPI.Tests.Integration_Tests
     public class GetPlayersByNameIntegrationTests
     {
         [Theory]
-        [InlineData("ps5")]
-        [InlineData("ps4")]
-        [InlineData("xbox-series-xs")]
-        [InlineData("xboxone")]
         [InlineData("common-gen4")]
         [InlineData("common-gen5")]
         void Constructor_Success(string platform)
@@ -59,10 +55,6 @@ namespace ProclubsWebAPI.Tests.Integration_Tests
         }
 
         [Theory]
-        [InlineData("ps5")]
-        [InlineData("ps4")]
-        [InlineData("xbox-series-xs")]
-        [InlineData("xboxone")]
         [InlineData("common-gen4")]
         [InlineData("common-gen5")]
         void URL_SubstituteValues(string platform)
@@ -95,10 +87,6 @@ namespace ProclubsWebAPI.Tests.Integration_Tests
         }
 
         [Theory]
-        [InlineData("ps5", "0000000")]
-        [InlineData("ps4", "0000000")]
-        [InlineData("xbox-series-xs", "0000000")]
-        [InlineData("xboxone", "0000000")]
         [InlineData("common-gen4", "0000000")]
         [InlineData("common-gen5", "0000000")]
         void URL_GetPlayers_PLayerDoesNotExist(string platform, string name)
