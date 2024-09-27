@@ -5,10 +5,7 @@ namespace ProclubsWebAPI.Tests
     public class ProclubsPlatformValidatorTests
     {
         [Theory]
-        [InlineData("PS5")]
-        [InlineData("PS4")]
-        [InlineData("XBOX-SERIES-XS")]
-        [InlineData("XBOXONE")]
+        [InlineData("COMMON-GEN5")]
         void Validate_ValidPlatforms_UpperCase_Fails(string platform)
         {
             ProclubsPlatformValidator validator = new ProclubsPlatformValidator();
@@ -16,7 +13,6 @@ namespace ProclubsWebAPI.Tests
         }
 
         [Theory]
-        [InlineData("common-gen4")]
         [InlineData("common-gen5")]
         void Validate_ValidPlatforms_Exact(string platform)
         {
@@ -25,7 +21,6 @@ namespace ProclubsWebAPI.Tests
         }
 
         [Theory]
-        [InlineData("comMOn-gen4")]
         [InlineData("common-Gen5")]
         void Validate_ValidPlatforms_MixedCase_Fails(string platform)
         {
@@ -47,6 +42,7 @@ namespace ProclubsWebAPI.Tests
         [InlineData("ps5 ")]
         [InlineData(" PS5")]
         [InlineData("p s 5")]
+        [InlineData("common-gen4")]
         void Validate_InvalidPlatform_Fails(string platform)
         {
             ProclubsPlatformValidator validator = new ProclubsPlatformValidator();

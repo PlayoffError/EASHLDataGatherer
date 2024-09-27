@@ -12,7 +12,6 @@ namespace ProclubsWebAPI.Tests.Integration_Tests
     public class GetPlayersByClubIntegrationTests
     {
         [Theory]
-        [InlineData("common-gen4")]
         [InlineData("common-gen5")]
         void Constructor_Success(string platform)
         {
@@ -55,7 +54,6 @@ namespace ProclubsWebAPI.Tests.Integration_Tests
         }
 
         [Theory]
-        [InlineData("common-gen4", 2532)]
         [InlineData("common-gen5", 1463)]        
         void URL_SubstituteValues(string platform, long clubID)
         {
@@ -68,7 +66,6 @@ namespace ProclubsWebAPI.Tests.Integration_Tests
         }
 
         [Theory]
-        [InlineData("common-gen4", 186)]
         [InlineData("common-gen5", 746)]        
         void URL_GetPlayers_ClubExists(string platform, long clubID)
         {
@@ -81,7 +78,6 @@ namespace ProclubsWebAPI.Tests.Integration_Tests
         }
 
         [Theory]
-        [InlineData("common-gen4", 999999)]
         [InlineData("common-gen5", 999999)]        
         void URL_GetPlayers_ClubDoesNotExist(string platform, long clubID )
         {

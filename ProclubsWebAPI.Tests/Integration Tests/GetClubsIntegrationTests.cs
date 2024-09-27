@@ -12,7 +12,6 @@ namespace ProclubsWebAPI.Tests.Integration_Tests
     public class GetClubsIntegrationTests
     {
         [Theory]
-        [InlineData("common-gen4")]
         [InlineData("common-gen5")]
         void Constructor_Success( string platformName )
         {
@@ -54,8 +53,6 @@ namespace ProclubsWebAPI.Tests.Integration_Tests
         }
 
         [Theory]
-        [InlineData("common-gen4", "Club Name", "Club+Name")]
-        [InlineData("common-gen4", "ClubName", "ClubName")]
         [InlineData("common-gen5", "Club Name", "Club+Name")]
         [InlineData("common-gen5", "ClubName", "ClubName")]
         void URL_SubstituteValues(string platformName, string clubName, string urlClubName)
@@ -69,8 +66,7 @@ namespace ProclubsWebAPI.Tests.Integration_Tests
         }
 
         [Theory]
-        [InlineData("common-gen4", "Black Army")]
-        [InlineData("common-gen5", "EHC Blackwings Linz")]
+        [InlineData("common-gen5", "Spread The Word")]
         void URL_GetClubs_ClubExists(string platformName, string clubName)
         {
             var webRequest = new ProclubsWebRequest();
@@ -83,7 +79,6 @@ namespace ProclubsWebAPI.Tests.Integration_Tests
         }
 
         [Theory]
-        [InlineData("common-gen4", "00000000")]
         [InlineData("common-gen5", "00000000")]
         void URL_GetClubs_ClubDoesNotExist(string platformName, string clubName)
         {

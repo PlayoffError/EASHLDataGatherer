@@ -15,7 +15,7 @@ namespace ProclubsObjectsTests.IntegrationTests
         [Fact]
         void GetClubByName_ClubExists()
         {
-            ClubObjectsByNameRequest request = new ClubObjectsByNameRequest("prospect", "common-gen5");
+            ClubObjectsByNameRequest request = new ClubObjectsByNameRequest("spread", "common-gen5");
             Dictionary<string, Club>? clubReturn = request.GetClubs().Result;
             
             clubReturn.Should().NotBeNull();
@@ -24,7 +24,7 @@ namespace ProclubsObjectsTests.IntegrationTests
             Club firstClub = clubReturn!.Values.First();
             firstClub.Should().NotBeNull();
 
-            firstClub.Name.ToUpper().Should().StartWith("PROSPECT");
+            firstClub.Name.ToUpper().Should().StartWith("SPREAD");
             firstClub.Platform.Should().Be("common-gen5");
             firstClub.ClubInfo.Should().NotBeNull();
         }

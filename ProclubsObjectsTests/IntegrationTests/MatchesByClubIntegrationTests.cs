@@ -17,7 +17,7 @@ namespace ProclubsObjectsTests.IntegrationTests
         [Fact]
         void GetMatches_ClubExists()
         {
-            RecentMatchesByClubIDRequest matchRequest = new RecentMatchesByClubIDRequest(40, "gameType5", "common-gen5");
+            RecentMatchesByClubIDRequest matchRequest = new RecentMatchesByClubIDRequest(749, "gameType5", "common-gen5");
             List<Match>? matches = matchRequest.GetMatches().Result;            
             matches.Should().NotBeNull();
             matches!.Count().Should().Be(5);
