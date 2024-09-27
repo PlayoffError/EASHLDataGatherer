@@ -12,11 +12,8 @@ namespace ProclubsWebAPI.Tests.Integration_Tests
     public class GetGamesIntegrationTests
     {        
         [Theory]
-        [InlineData("common-gen4", "gameType5")]
         [InlineData("common-gen5", "gameType5")]
-        [InlineData("common-gen4", "gameType10")]
         [InlineData("common-gen5", "gameType10")]
-        [InlineData("common-gen4", "club_private")]
         [InlineData("common-gen5", "club_private")]
         void Constructor_Success( string platform, string matchType )
         {
@@ -85,11 +82,8 @@ namespace ProclubsWebAPI.Tests.Integration_Tests
         }
 
         [Theory]
-        [InlineData("common-gen4", 186, "gameType5")]
         [InlineData("common-gen5", 40, "gameType5")]
-        [InlineData("common-gen4", 186, "gameType10")]
         [InlineData("common-gen5", 40, "gameType10")]
-        [InlineData("common-gen4", 186, "club_private")]
         [InlineData("common-gen5", 40, "club_private")]
         void URL_SubstituteValues(string platform, long clubID, string matchType)
         {
@@ -103,12 +97,12 @@ namespace ProclubsWebAPI.Tests.Integration_Tests
         }
 
         [Theory]
-        [InlineData("common-gen4", 186, "gameType5")]
-        [InlineData("common-gen5", 40, "gameType5")]
-        [InlineData("common-gen4", 186, "gameType10")]
-        [InlineData("common-gen5", 40, "gameType10")]
-        [InlineData("common-gen4", 186, "club_private")]
-        [InlineData("common-gen5", 40, "club_private")]
+        // Re-add these tests when we find a club that has played playoffs ( gameType10 )
+        // and private matches ( club_private ).  Normal matches seems to work, so I would expect
+        // the others too as well when an appropriate test club can be found.
+        [InlineData("common-gen5", 749, "gameType5")]
+        //[InlineData("common-gen5", 749, "gameType10")]
+        //[InlineData("common-gen5", 749, "club_private")]
         void URL_GetGames_ClubExists(string platform, long clubID, string matchType)
         {
             var webRequest = new ProclubsWebRequest();
@@ -121,11 +115,8 @@ namespace ProclubsWebAPI.Tests.Integration_Tests
         }
 
         [Theory]
-        [InlineData("common-gen4", 999999, "gameType5")]
         [InlineData("common-gen5", 999999, "gameType5")]
-        [InlineData("common-gen4", 999999, "gameType10")]
         [InlineData("common-gen5", 999999, "gameType10")]
-        [InlineData("common-gen4", 999999, "club_private")]
         [InlineData("common-gen5", 999999, "club_private")]
         void URL_GetGames_ClubDoesNotExist(string platform, long clubID, string matchType)
         {

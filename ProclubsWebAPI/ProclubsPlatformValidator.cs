@@ -7,7 +7,8 @@ namespace ProclubsWebAPI
 {
     public class ProclubsPlatformValidator : IPlatformValidator
     {
-        private static readonly Lazy<List<string>> _validPlatforms = new Lazy<List<string>>(() => new List<string>() { "common-gen4", "common-gen5" });
+        // As of NHL 25 there is only one valid platform
+        private static readonly Lazy<List<string>> _validPlatforms = new Lazy<List<string>>(() => new List<string>() { "common-gen5" });
 
         /// <inheritdoc/>
         public bool Validate(string platform)

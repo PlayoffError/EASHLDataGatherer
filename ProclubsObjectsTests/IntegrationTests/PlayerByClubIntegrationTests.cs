@@ -15,7 +15,7 @@ namespace ProclubsObjectsTests.IntegrationTests
         [Fact]
         public void PlayerByClubIntegrationTests_ClubExists()
         {
-            PlayersByClubIDRequest playerRequest = new PlayersByClubIDRequest(40, "common-gen5");
+            PlayersByClubIDRequest playerRequest = new PlayersByClubIDRequest(749, "common-gen5");
             PlayerByClubReturn? byClubReturn = playerRequest.GetPlayers().Result;
             byClubReturn.Should().NotBeNull();
             byClubReturn!.Members.Should().NotBeEmpty();
