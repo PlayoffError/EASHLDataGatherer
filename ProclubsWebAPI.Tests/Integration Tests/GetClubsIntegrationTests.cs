@@ -66,7 +66,7 @@ namespace ProclubsWebAPI.Tests.Integration_Tests
         }
 
         [Theory]
-        [InlineData("common-gen5", "Spread The Word")]
+        [InlineData("common-gen5", "Old Time Hockey")]
         void URL_GetClubs_ClubExists(string platformName, string clubName)
         {
             var webRequest = new ProclubsWebRequest();

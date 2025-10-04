@@ -66,7 +66,7 @@ namespace ProclubsWebAPI.Tests.Integration_Tests
         }
 
         [Theory]
-        [InlineData("common-gen5", 746)]        
+        [InlineData("common-gen5", 31)]        
         void URL_GetPlayers_ClubExists(string platform, long clubID)
         {
             var webRequest = new ProclubsWebRequest();

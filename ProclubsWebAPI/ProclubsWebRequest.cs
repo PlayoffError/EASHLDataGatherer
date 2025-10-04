@@ -19,6 +19,9 @@ namespace ProclubsWebAPI
                 using (var requestMessage = new HttpRequestMessage(new HttpMethod("GET"), URL))
                 {
                     // Setup the headers to simulate a call from Postman.  
+                    requestMessage.Headers.Add("Cacche-Control", "no-cache");
+                    requestMessage.Headers.Add("Connection", "keep-alive");
+                    requestMessage.Headers.Add("Acccept-Language", "en-US,en;q=0.9");
                     requestMessage.Headers.Add("User-Agent", "PostmanRuntime/7.28.4");
                     requestMessage.Headers.Add("Accept", "*/*");
                     requestMessage.Headers.TryAddWithoutValidation("referer", "www.ea.com");
